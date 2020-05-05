@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./style.css";
 import axios from "axios";
 import IngredientInput from './IngredientInput';
+import Notifications from './Notifications';
 
 class Dashboard extends Component {
     state = { user_name: undefined, ingredients: undefined, login: false };
@@ -33,6 +34,7 @@ class Dashboard extends Component {
         return (
             <div>
                 <h1>Welcome {this.state.user_name}</h1>
+                <Notifications ingredients={this.state.ingredients}></Notifications>
                 {/* {this.state.login ?
                     <a href='http://localhost:8080/auth/logout'><button className="px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
                     :
