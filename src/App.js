@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
-import './App.css';
-
+import React from 'react';
+import { GlobalProvider } from './context/GlobalState';
 import Nav from "./components/Nav"
 import Kitchen from "./components/Kitchen"
 import Dashboard from "./components/Dashboard"
-import Recipes from "./components/Recipes"
-import Cart from "./components/Cart"
+import Final from "./components/Final"
+import EventCalendar from "./components/EventCalendar"
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
 
-class App extends Component {
-  render(){
+function App() {
     return (
       <Router>
-        <div className="App">
+        <GlobalProvider>
           <Nav />
           <Switch>
             <Route exact path="/" component={Dashboard}/>
             <Route exact path="/dashboard" component={Dashboard}/>
             <Route exact path="/kitchen" component={Kitchen}/>
-            <Route exact path="/recipes" component={Recipes}/>
-            <Route exact path="/cart" component={Cart}/>
+            <Route exact path="/recipes" component={Final}/>
+            <Route exact path="/calendar" component={EventCalendar}/>
           </Switch>
-        </div>
+        
+        </GlobalProvider>
       </Router>
     );
   }
-}
+
 
 export default App;

@@ -16,7 +16,7 @@ class Kitchen extends Component{
                 let kitchenArr = [];
                 let pantryArr = [];
                 for(let i = 0; i < response.data.ingredients.length; i++){
-                    if(response.data.ingredients[i].fridge_bool == true){
+                    if(response.data.ingredients[i].fridge_bool === true){
                         kitchenArr.push(response.data.ingredients[i]);
                     } else {
                         pantryArr.push(response.data.ingredients[i]);
@@ -35,7 +35,7 @@ class Kitchen extends Component{
                 let kitchenArr = [];
             let pantryArr = [];
             for(let i = 0; i < response.data.ingredients.length; i++){
-                if(response.data.ingredients[i].fridge_bool == true){
+                if(response.data.ingredients[i].fridge_bool === true){
                     kitchenArr.push(response.data.ingredients[i]);
                 } else {
                     pantryArr.push(response.data.ingredients[i]);
