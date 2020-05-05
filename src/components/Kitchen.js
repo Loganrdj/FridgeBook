@@ -33,7 +33,7 @@ class Kitchen extends Component{
         axios.get('/profile').then((response) => {
             if (response.data) {
                 let kitchenArr = [];
-            let pantryArr = [];
+                let pantryArr = [];
             for(let i = 0; i < response.data.ingredients.length; i++){
                 if(response.data.ingredients[i].fridge_bool === true){
                     kitchenArr.push(response.data.ingredients[i]);
