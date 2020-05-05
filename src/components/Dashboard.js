@@ -33,11 +33,11 @@ class Dashboard extends Component {
         return (
             <div>
                 <h1>Welcome {this.state.user_name}</h1>
-                {this.state.login ?
-                    <a href='http://localhost:8080/auth/logout'><button>Log Out</button></a>
+                {/* {this.state.login ?
+                    <a href='http://localhost:8080/auth/logout'><button className="px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
                     :
-                    <a type="button" href='http://localhost:8080/auth/google'><button>Log In</button></a>
-                }
+                    <a href='http://localhost:8080/auth/google'><button className="justify-content:center px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Log In</button></a>
+                } */}
                 <IngredientInput afterSubmit={this.updateIngredients}></IngredientInput>
                 
                 {/* --------------Replace this part with component---------------*/}
