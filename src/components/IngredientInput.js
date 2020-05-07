@@ -22,7 +22,7 @@ class IngredientInput extends Component {
     submitIngredient = (event) => {
         event.preventDefault();
         let t = new Date();
-        this.setState({ date_start: `${t.getFullYear()}-${t.getMonth()}-${t.getDate()}` }, () => {
+        this.setState({ date_start: `${t.getFullYear()}-${t.getMonth()+1}-${t.getDate()}` }, () => {
             console.log(this.state);
             axios.post("/api/ingredient", this.state)
                 .then(res => this.props.afterSubmit())
