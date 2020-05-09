@@ -6,7 +6,7 @@ class Notifications extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { props, ingredients: "" }
+        this.state = {props}
     }
 
     render() {
