@@ -42,7 +42,6 @@
     "start:dev": "concurrently \"node server.js\" \"react-scripts start\"",
     "client": "cd src && npm run start",
     "seed": "node scripts/seedDB.js",
-    "install": "npm install",
     "build": "npm run build",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
