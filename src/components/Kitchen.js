@@ -62,7 +62,7 @@ class Kitchen extends Component{
     }
 
     render(){
-        return <div>
+        return <div className="fade-in">
                 <h1>Kitchen Page</h1>
                     <div className="row">
                         <div className="col-md-6">
