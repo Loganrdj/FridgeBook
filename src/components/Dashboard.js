@@ -37,12 +37,33 @@ class Dashboard extends Component {
 
     render() {
         return (
-            <div>
+            <div className="fade-in">
                 <h1>Welcome {this.state.user_name}</h1>
-                <NotificationWrapper>
-                    <Notifications ingredients={this.state.ingredients}></Notifications>
-                </NotificationWrapper>
-                <IngredientInput afterSubmit={this.updateIngredients}></IngredientInput>
+                <div className="container container-inner-color">
+                    <div className="row">
+                        <div className="col-md-6">
+                            {/* <div className="container"> */}
+                                <h2>Input your ingredients</h2>
+                                <IngredientInput afterSubmit={this.updateIngredients}></IngredientInput>  
+                            {/* </div> */}
+                        </div>
+                        <div className="col-md-6">
+                            {/* <div className="container"> */}
+                                <h2>Notifications</h2>
+                                <NotificationWrapper>
+                                    <Notifications ingredients={this.state.ingredients}></Notifications>
+                                </NotificationWrapper>
+                            {/* </div> */}
+                        </div>
+                    </div>
+                </div>
+                
+                
+                    
+                {/* <div className="container border rounded"> */}
+
+
+                
             </div>
         );
     }

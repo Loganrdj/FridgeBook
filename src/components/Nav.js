@@ -48,7 +48,7 @@ class Nav extends Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
                 <a className="navbar-brand color:blue" href="/">FridgeBook</a>
                 <ul className="nav-links navbar-nav mr-auto">
                     <Link to="/dashboard" className="nav-link">

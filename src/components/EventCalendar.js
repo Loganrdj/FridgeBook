@@ -96,7 +96,7 @@ class EventCalendar extends Component {
 
   render() {
     return (
-      <div className="animated fadeIn p-4 demo-app">
+      <div className="animated fadeIn p-4 demo-app fade-in">
         <Row>
           <Col lg={3} sm={3} md={3}>
             <div

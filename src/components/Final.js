@@ -4,7 +4,7 @@ import Header from './Header';
 
 function Final(){
     return (
-    <div className="row">
+    <div className="row  fade-in">
     <Header />
     <Recipes />
     </div>
