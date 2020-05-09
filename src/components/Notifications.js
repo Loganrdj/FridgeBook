@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, {Component } from 'react';
 import "./style.css";
 import IngredientAlert from './IngredientAlert';
 
@@ -6,19 +6,9 @@ class Notifications extends Component {
 
     constructor(props) {
         super(props)
-        this.state = { props, show: true, ingredients: "" }
+        this.state = { props, ingredients: "" }
     }
 
-    handleFalse = (id) => {
-        // id = id.target
-        // console.log(id);
-        this.setState({
-            show: false
-        });
-    }
-    // const [show, setShow] = useState(true);
-    // const handleFalse = () => setShow(false);
-    // const handleTrue = () => setShow(true);
     render() {
         return (
             <div className="container">
@@ -29,7 +19,9 @@ class Notifications extends Component {
                             let tempDate = item.date_expire.substring(0, item.date_expire.length - 1)
                             let remain = Math.floor(((new Date(tempDate) - new Date()) / 86400000) + 1);
                             return (<IngredientAlert key={item.id} item={item} remain={remain}></IngredientAlert>);
-                        }}) : ""}
+                        }
+                        return null;
+                        }) : ""}
                 </div>
             </div>
         )
