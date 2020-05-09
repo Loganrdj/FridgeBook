@@ -4,7 +4,7 @@ import "./style.css";
 function Inventory(props){
     
     return  (<div>
-                <h2>{props.name} Component</h2>
+                <h2>{props.name} Inventory</h2>
                 {console.log(props.ingredients)}
                 <div className = "container border pt-2">
                 {props.ingredients ? props.ingredients.map(item => {
