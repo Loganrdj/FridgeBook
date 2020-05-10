@@ -65,9 +65,9 @@ class Nav extends Component {
                     </Link>
                 </ul>
                 {this.state.login ?
-                    <a href='http://localhost:8080/auth/logout'><button className="px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
+                    <a href='http://localhost:8080/auth/logout'><button className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
                     :
-                    <a href='http://localhost:8080/auth/google'><button className="justify-content:center px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Log In</button></a>
+                    <a href='http://localhost:8080/auth/google'><button className="justify-content:center px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log In</button></a>
                 }
             </nav>
         );

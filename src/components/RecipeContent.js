@@ -19,7 +19,7 @@ const RecipeContent = ({ recipeData, missingIngredients }) => {
           alt={title}
         />
       </div>
-      <div className="p-6 border-b border-orange-200">
+      <div className="p-6 border-b border-gray-200">
         <h2 className="text-3xl font-semibold">{title}</h2>
         <p className="text-sm text-gray-600 mb-4">
           From{' '}
@@ -54,7 +54,7 @@ const RecipeContent = ({ recipeData, missingIngredients }) => {
               {analyzedInstructions[0].steps.map((step) => {
                 return (
                   <li className="text-sm mb-3 flex items-baseline">
-                    <span className="w-10 h-10 leading-10 bg-orange-600 text-white inline-block text-center rounded-full mr-2 flex-shrink-0">
+                    <span className="w-10 h-10 leading-10 bg-black-600 text-white inline-block text-center rounded-full mr-2 flex-shrink-0">
                       {step.number}
                     </span>{' '}
                     <span>{step.step}</span>
@@ -68,7 +68,7 @@ const RecipeContent = ({ recipeData, missingIngredients }) => {
             href={sourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-400"
+            className="px-3 py-2 rounded-md bg-black-500 text-white hover:bg-gray-400"
           >
             Click for instructions
           </a>

@@ -23,7 +23,7 @@ const MissingIngredient = ({ ingredient }) => {
     <Fragment>
       {!ingredientAdded.length ? (
         <div
-          className="bg-orange-500 px-2 inline-block rounded-full mx-1 mb-2 cursor-pointer text-white hover:bg-orange-400"
+          className="bg-black-500 px-2 inline-block rounded-full mx-1 mb-2 cursor-pointer text-white hover:bg-gray-400"
           onClick={() => addMissingIngredient(ingredient)}
         >
           {ingredient}

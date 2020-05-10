@@ -8,7 +8,7 @@ const RecipeContentPlaceholder = () => {
   return (
     <Fragment>
       <div className="pb-1/2 relative bg-gray-100"></div>
-      <div className="p-6 border-b border-orange-200">
+      <div className="p-6 border-b border-black-500">
         <div className="bg-gray-100 h-8 w-64 mb-1"></div>
         <div className="bg-gray-100 h-4 w-48"></div>
       </div>

@@ -88,7 +88,7 @@ class IngredientInput extends Component {
                                 <option value={false}>Pantry</option>
                         </input> */}
                     </div>
-                    <button type="submit" onClick={this.submitIngredient} className="px-3 py-2 rounded-md bg-blue-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed">Submit</button>
+                    <button type="submit" onClick={this.submitIngredient} className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Submit</button>
                 </div>
             </form>
         )
