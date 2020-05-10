@@ -19,6 +19,7 @@ const Header = () => {
           Discover what you can make with what you got in your fridge or pantry
         </p>
         <AddIngredient />
+        <br></br>
         <IngredientsList />
       </div>
     </header>

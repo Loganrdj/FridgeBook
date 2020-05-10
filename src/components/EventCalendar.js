@@ -11,46 +11,76 @@ import "@fullcalendar/daygrid/main.css";
 import "@fullcalendar/timegrid/main.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
+import firebase from './firebase.js';
+import { eventReceive } from "@fullcalendar/core";
+
+
 
 class EventCalendar extends Component {
-  state = {
-    calendarEvents: [
-      {
-        title: "Atlanta Monster",
-        start: new Date("2020-05-04 00:00"),
-        id: "99999998"
-      },
-      {
-        title: "My Favorite Murder",
-        start: new Date("2020-05-05 00:00"),
-        id: "99999999"
-      }
-    ],
-    events: [
-      { title: "Event 1", id: "1" },
-      { title: "Event 2", id: "2" },
-      { title: "Event 3", id: "3" },
-      { title: "Event 4", id: "4" },
-      { title: "Event 5", id: "5" }
-    ]
-  };
-
+  constructor() {
+    super();
+    this.state = {
+      currentItem: '',
+      username: '',
+      items: [],
+      calendarItems: []
+    }
+  }
   /**
    * adding dragable properties to external events through javascript
    */
+  
+
   componentDidMount() {
     let draggableEl = document.getElementById("external-events");
     new Draggable(draggableEl, {
-      itemSelector: ".fc-event",
+      itemSelector: ".savedRecipes",
       eventData: function(eventEl) {
         let title = eventEl.getAttribute("title");
         let id = eventEl.getAttribute("data");
         return {
           title: title,
-          id: id
+          id: id,
         };
       }
     });
+    // const calendarRef = firebase.database().ref('Recipes2');
+    // calendarRef.on('value', (snapshot) => {
+    //   let calendarItems = snapshot.val();
+    //   let calendarState = [];
+    //   for (let calendarItem in calendarItems) {
+    //     calendarState.push({
+    //       id: calendarItem,
+    //       title: calendarItems[this.eventReceive].title,
+    //     });
+    //   }
+    //   this.setState({
+    //     calendarItems: calendarState
+    //   });
+    // });
+
+    const itemsRef = firebase.database().ref('savedRecipes');
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          title: items[item].title,
+        });
+      }
+      this.setState({
+        items: newState
+      });
+    });
+    
+    
+
+  }
+
+  removeItem(itemId) {
+    const itemRef = firebase.database().ref(`/savedRecipes/${itemId}`);
+    itemRef.remove();
   }
 
   /**
@@ -59,41 +89,34 @@ class EventCalendar extends Component {
   eventClick = eventClick => {
     Alert.fire({
       title: eventClick.event.title,
-      html:
-        `<div class="table-responsive">
-      <table class="table">
-      <tbody>
-      <tr >
-      <td>Title</td>
-      <td><strong>` +
-        eventClick.event.title +
-        `</strong></td>
-      </tr>
-      <tr >
-      <td>Start Time</td>
-      <td><strong>
-      ` +
-        eventClick.event.start +
-        `
-      </strong></td>
-      </tr>
-      </tbody>
-      </table>
-      </div>`,
-
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Remove Event",
+      confirmButtonText: "Remove Recipe",
       cancelButtonText: "Close"
     }).then(result => {
       if (result.value) {
         eventClick.event.remove(); // It will remove event from the calendar
-        Alert.fire("Deleted!", "Your Event has been deleted.", "success");
+        Alert.fire("Deleted!", "Your Recipe has been deleted.", "success");
       }
     });
   };
 
+  // eventReceive = eventReceive => {
+  //   Alert.fire({
+  //     title: eventReceive.event.title,
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#d33",
+  //     cancelButtonColor: "#3085d6",
+  //     confirmButtonText: "Save Recipe?",
+  //     cancelButtonText: "Close"
+  //   }).then(result => {
+  //       firebase.database().ref().child('Recipes2').push(eventReceive.event.title);
+  //       console.log(eventReceive.event.title);
+  //       console.log(eventReceive.event._instance.range.start);
+  //   })
+  //   }
+      
   render() {
     return (
       <div className="animated fadeIn p-4 demo-app fade-in">
@@ -109,16 +132,19 @@ class EventCalendar extends Component {
               }}
             >
               <p align="center">
-                <strong> Events</strong>
+                <strong> Stored Recipes</strong>
               </p>
-              {this.state.events.map(event => (
+              {this.state.items.map(recipe => (
                 <div
-                  className="fc-event"
-                  title={event.title}
-                  data={event.id}
-                  key={event.id}
+                  className="savedRecipes rounded-md bg-black-500 text-white hover:bg-gray-400 disabled:opacity-50 margin:2px border:gray"
+                  title={recipe.title}
+                  data={recipe.image}
+                  key={recipe.id}
                 >
-                  {event.title}
+                  {recipe.title}
+                  <button className = "btn btn-secondary btn-sm active removeList left-0" onClick={() => this.removeItem(recipe.id)}>Remove</button>
+    
+                  <br></br>
                 </div>
               ))}
             </div>
@@ -154,6 +180,7 @@ class EventCalendar extends Component {
     );
   }
 }
+
 
 const rootElement = document.getElementById("root");
 // ReactDOM.render(<App />, rootElement);

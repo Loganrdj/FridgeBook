@@ -3,6 +3,7 @@ import axios from 'axios';
 import RecipesList from './RecipesList';
 import { GlobalContext } from '../context/GlobalState';
 import Inventory from "./Inventory";
+import firebase from './firebase.js';
 
 
 const Main = () => {
@@ -62,6 +63,7 @@ const Main = () => {
         `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${encodedIngredients}&number=30&ranking=2&ignorePantry=false&apiKey=df52bffa937c4efc8c90dfe52995a72f`
       );
       console.log(recipes.data);
+      firebase.database().ref().child('recipes').push(recipes.data);
 
       if (recipes.data.length === 0) {
         setMessage(
@@ -85,19 +87,19 @@ const Main = () => {
     <div className="lg:w-60vw lg:max-h-100vh lg:overflow-y-auto flex flex-col justify-between">
       <section className="py-16">
         <div className="px-8 max-w-5xl m-auto">
-          <div className="border-b border-orange-200 pb-2 flex justify-between mb-6">
+          <div className="border-b border-gray-400 pb-2 flex justify-between mb-6">
             <h2 className="font-bold text-gray-900 text-3xl">Recipes</h2>
             <button
               onClick={fetchRecipes}
               disabled={loading}
-              className="px-3 py-2 rounded-md bg-orange-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? `Fetching Recipes` : `Fetch Recipes from search`}
             </button>
             <button
               onClick={callDatabase}
               disabled={loading}
-              className="px-3 py-2 rounded-md bg-orange-500 text-white focus:outline-none hover:bg-orange-400 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? `Searching...` : `What can I make?`}
             </button>
