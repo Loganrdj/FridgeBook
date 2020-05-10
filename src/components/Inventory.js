@@ -33,7 +33,7 @@ function Inventory(props){
                 {props.ingredients ? props.ingredients.map(item => {
                     var tempDate = new Date(item.date_expire.substring(0, item.date_expire.length - 1))
                     let remain = Math.floor(((new Date(tempDate) - new Date()) / 86400000) + 1);
-                    tempDate = tempDate.getMonth() + "/" + tempDate.getDate() + "/"+ tempDate.getFullYear();
+                    tempDate = (tempDate.getMonth() + 1) + "/" + tempDate.getDate() + "/"+ tempDate.getFullYear();
                     var textClass = "";
                     if (remain === 0){
                         textClass = "warningColor"
