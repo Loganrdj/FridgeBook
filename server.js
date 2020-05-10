@@ -19,12 +19,15 @@ app.use(express.json());
 var session = require("express-session"),
   bodyParser = require("body-parser");
 
+  
 app.use(express.static("public"));
 app.use(session({ secret: myKeys.cookieSession.sessioinKey })); //cookie: { maxAge: 0.5 * 60 * 60 * 1000 } }
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+}
 app.use(router);                                   //"backend routing/api call"
 
 
