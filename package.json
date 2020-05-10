@@ -1,6 +1,9 @@
 {
   "name": "fridgebook",
   "version": "0.1.0",
+  "engines":{
+    "node":"v12.13.0"
+  },
   "private": true,
   "proxy": "http://localhost:8080/",
   "dependencies": {
