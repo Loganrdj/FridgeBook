@@ -47,6 +47,8 @@ class Nav extends Component {
     }
 
     render() {
+        const logoutURL = process.env.PRODUCTION ? "/auth/logout" : "http://localhost:8080/auth/logout";
+        const loginURL = process.env.PRODUCTION ? "/auth/google" : "http://localhost:8080/auth/google";
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
                 <a className="navbar-brand color:blue" href="/">FridgeBook</a>
@@ -65,9 +67,9 @@ class Nav extends Component {
                     </Link>
                 </ul>
                 {this.state.login ?
-                    <a href='http://localhost:8080/auth/logout'><button className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
+                    <a href={logoutURL}><button className="px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log Out</button></a>
                     :
-                    <a href='http://localhost:8080/auth/google'><button className="justify-content:center px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log In</button></a>
+                    <a href={loginURL}><button className="justify-content:center px-3 py-2 rounded-md bg-black-500 text-white focus:outline-none hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed">Log In</button></a>
                 }
             </nav>
         );
