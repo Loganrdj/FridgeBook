@@ -5,6 +5,7 @@ const db = require("../models");
 
 router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    // res.redirect("https://fridgebook.herokuapp.com/")
 });
 
 // Retrieve user's data from database
