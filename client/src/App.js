@@ -13,7 +13,7 @@ import {
 
 function App() {
     return (
-      <Router>
+      <Router basename={"https://fridgebook.herokuapp.com"}>
         <GlobalProvider>
           <Nav />
           <Switch>
