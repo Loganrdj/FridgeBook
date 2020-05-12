@@ -14,6 +14,7 @@ class Nav extends Component {
     componentDidMount() {
         dotenv.config();
         axios.get('/profile').then((response) => {
+            console.log(response.data)
             if (response.data) {
                 // console.log(response.data);
                 this.setState({ login: true, user_name: response.data.user_name, ingredients: response.data.ingredients }, this.trackInactivity);
