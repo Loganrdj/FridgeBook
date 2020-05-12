@@ -51,8 +51,10 @@ class Nav extends Component {
     render() {
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
         console.log(process.env.PRODUCTION)
-        const logoutURL = process.env.PRODUCTION ? "/auth/logout" : "http://localhost:8080/auth/logout";
-        const loginURL = process.env.PRODUCTION ? "/auth/google" : "http://localhost:8080/auth/google";
+        // const logoutURL = process.env.PRODUCTION ? "/auth/logout" : "http://localhost:8080/auth/logout";
+        // const loginURL = process.env.PRODUCTION ? "/auth/google" : "http://localhost:8080/auth/google";
+        const logoutURL = "https://fridgebook.herokuapp.com/auth/logout"
+        const loginURL = "https://fridgebook.herokuapp.com/auth/google"
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
                 <a className="navbar-brand color:blue" href="/">FridgeBook</a>
