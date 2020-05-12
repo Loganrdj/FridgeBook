@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "./style.css";
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import dotenv from 'dotenv';
 
 class Nav extends Component {
     state = {
@@ -11,6 +12,7 @@ class Nav extends Component {
     };
 
     componentDidMount() {
+        dotenv.config();
         axios.get('/profile').then((response) => {
             if (response.data) {
                 // console.log(response.data);
