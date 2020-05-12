@@ -10,7 +10,7 @@ router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
     console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& AUTHROUTES:")
     console.log(process.env.PRODUCTION)
     // res.redirect(process.env.PRODUCTION ? "/" : "http://localhost:3000/");
-    res.redirect("https://fridgebook.herokuapp.com/dashboard")
+    res.redirect("https://fridgebook.herokuapp.com/dashboard/")
 });
 
 
@@ -18,7 +18,7 @@ router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
 router.get("/logout", (req, res) => {
     req.logOut();
     // res.redirect(process.env.PRODUCTION ? "/" : "http://localhost:3000/");
-    res.redirect("https://fridgebook.herokuapp.com/dashboard")
+    res.redirect("https://fridgebook.herokuapp.com/dashboard/")
 });
 
 module.exports = router;
