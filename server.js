@@ -20,7 +20,8 @@ app.use(express.json());
 var session = require("express-session"),
   bodyParser = require("body-parser");
 
-  
+console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& SERVER:")
+console.log(process.env.PRODUCTION)
 app.use(express.static("client/public"));
 app.use(session({ secret: myKeys.cookieSession.sessioinKey })); //cookie: { maxAge: 0.5 * 60 * 60 * 1000 } }
 app.use(bodyParser.urlencoded({ extended: false }));

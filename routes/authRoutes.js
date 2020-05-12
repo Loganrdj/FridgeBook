@@ -7,6 +7,8 @@ const passport = require("passport");
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+    console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& AUTHROUTES:")
+    console.log(process.env.PRODUCTION)
     res.redirect(process.env.PRODUCTION ? "/" : "http://localhost:3000/");
 });
 
