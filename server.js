@@ -1,6 +1,6 @@
 const express = require("express");
 const router = require("./routes");
-
+const path = require('path');
 // load databse
 var db = require("./models");
 
@@ -20,14 +20,15 @@ var session = require("express-session"),
   bodyParser = require("body-parser");
 
   
-app.use(express.static("public"));
+app.use(express.static("client/public"));
 app.use(session({ secret: myKeys.cookieSession.sessioinKey })); //cookie: { maxAge: 0.5 * 60 * 60 * 1000 } }
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
+  app.use(express.static("client/build"));
 }
+
 app.use(router);                                   //"backend routing/api call"
 
 
@@ -35,6 +36,10 @@ var syncOptions = { force: false };
 if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 db.sequelize.sync(syncOptions).then(function () {
   app.listen(PORT, function () {
