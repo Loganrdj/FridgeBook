@@ -8,6 +8,8 @@ router.get("/", (req, res) => {
     // res.redirect("https://fridgebook.herokuapp.com/")
 });
 
+
+
 // Retrieve user's data from database
 router.get("/profile", (req, res) => {
     if (req.isAuthenticated()) {
