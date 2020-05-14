@@ -50,7 +50,9 @@ h1 {
 .navbar-brand {
   color: blue;
 }
-
+.foodButton {
+  margin-top: 1030%;
+}
 .savedRecipes{
   margin-bottom: 10px;
 }

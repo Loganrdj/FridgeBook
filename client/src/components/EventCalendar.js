@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { Col, Row } from "reactstrap";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -12,10 +12,7 @@ import "@fullcalendar/timegrid/main.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import firebase from './firebase.js';
-import { eventReceive } from "@fullcalendar/core";
-
-
-
+import moment from "moment"
 class EventCalendar extends Component {
   constructor() {
     super();
@@ -23,14 +20,27 @@ class EventCalendar extends Component {
       currentItem: '',
       username: '',
       items: [],
-      calendarItems: []
+      calendarItems: [],
+        calendarEvents: [
+          {
+              title: "Pizza Night",
+              start: new Date("2020-05-16"),
+              url: "https://www.dominos.com/",
+              backgroundColor: "red"
+          },
+          {
+              title: "Taco Tuesday",
+              start: new Date("2020-05-20"),
+              url: "https://www.grubhub.com/delivery/dish/street_taco",
+              backgroundColor: "yellow",
+              textColor: "black"
+          }
+          ]
     }
   }
   /**
    * adding dragable properties to external events through javascript
    */
-  
-
   componentDidMount() {
     let draggableEl = document.getElementById("external-events");
     new Draggable(draggableEl, {
@@ -41,8 +51,26 @@ class EventCalendar extends Component {
         return {
           title: title,
           id: id,
+          stick: true,
         };
       }
+    });
+// const { eventReceive } = useContext(GlobalContext);
+    const itemsRef = firebase.database().ref('savedRecipes');
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({
+          id: item,
+          title: items[item].title,
+          image: items[item].image,
+          imageType: items[item].imageType
+        });
+      }
+      this.setState({
+        items: newState
+      });
     });
     // const calendarRef = firebase.database().ref('Recipes2');
     // calendarRef.on('value', (snapshot) => {
@@ -58,37 +86,32 @@ class EventCalendar extends Component {
     //     calendarItems: calendarState
     //   });
     // });
-
-    const itemsRef = firebase.database().ref('savedRecipes');
-    itemsRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-      let newState = [];
-      for (let item in items) {
-        newState.push({
-          id: item,
-          title: items[item].title,
-        });
-      }
-      this.setState({
-        items: newState
-      });
-    });
-    
-    
-
   }
-
   removeItem(itemId) {
     const itemRef = firebase.database().ref(`/savedRecipes/${itemId}`);
     itemRef.remove();
   }
-
   /**
    * when we click on event we are displaying event details
    */
   eventClick = eventClick => {
+    setTimeout(() => {
+    console.log(eventClick.event);
     Alert.fire({
       title: eventClick.event.title,
+      html:
+      `<div class="table-responsive">
+  <table class="table">
+  <tbody>
+  <tr >
+  <td>Date</td>
+  <td><strong>` +
+      eventClick.event.start +
+      `</strong></td>
+  </tr>
+  </tbody>
+  </table>
+  </div>`,
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
@@ -98,10 +121,16 @@ class EventCalendar extends Component {
       if (result.value) {
         eventClick.event.remove(); // It will remove event from the calendar
         Alert.fire("Deleted!", "Your Recipe has been deleted.", "success");
+        console.log(eventClick.event);
       }
     });
-  };
-
+  }, 500)
+}
+// eventReceive = eventReceive =>
+// {
+//   this.setState({ eventReceiveStartDate : moment(eventReceive.event.start).format("YYYY-MM-DD") })
+//   this.props.addToCalendarHandler(eventReceive.event.id, eventReceive.event.start , eventReceive.event.end);
+// };
   // eventReceive = eventReceive => {
   //   Alert.fire({
   //     title: eventReceive.event.title,
@@ -116,10 +145,10 @@ class EventCalendar extends Component {
   //       console.log(eventReceive.event._instance.range.start);
   //   })
   //   }
-      
   render() {
     return (
       <div className="animated fadeIn p-4 demo-app fade-in">
+        <h1>Recipe Calendar</h1>
         <Row>
           <Col lg={3} sm={3} md={3}>
             <div
@@ -132,24 +161,25 @@ class EventCalendar extends Component {
               }}
             >
               <p align="center">
-                <strong> Stored Recipes</strong>
+                <strong> Saved Recipes</strong>
               </p>
+              <br></br>
               {this.state.items.map(recipe => (
                 <div
                   className="savedRecipes rounded-md bg-black-500 text-white hover:bg-gray-400 disabled:opacity-50 margin:2px border:gray"
                   title={recipe.title}
-                  data={recipe.image}
+                  image={recipe.image}
                   key={recipe.id}
+                  url={recipe.url}
                 >
                   {recipe.title}
-                  <button className = "btn btn-secondary btn-sm active removeList left-0" onClick={() => this.removeItem(recipe.id)}>Remove</button>
-    
+                  {/* {recipe.image} */}
                   <br></br>
+                  <button className = "btn btn-secondary btn-sm active removeList" onClick={() => this.removeItem(recipe.id)}>X</button>
                 </div>
               ))}
-            </div>
+              </div>
           </Col>
-
           <Col lg={9} sm={9} md={9}>
             <div className="demo-app-calendar" id="mycalendartest">
               <FullCalendar
@@ -180,9 +210,6 @@ class EventCalendar extends Component {
     );
   }
 }
-
-
-const rootElement = document.getElementById("root");
+// const rootElement = document.getElementById("root");
 // ReactDOM.render(<App />, rootElement);
-
 export default EventCalendar;

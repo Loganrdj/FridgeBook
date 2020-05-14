@@ -12,7 +12,7 @@ const MissingIngredient = ({ ingredient }) => {
       value: ingredient,
     };
     addIngredient(newIngredient);
-    setChecked(true);
+    // setChecked(true);
   };
 
   const ingredientAdded = ingredients.filter((newIngredient) => {
