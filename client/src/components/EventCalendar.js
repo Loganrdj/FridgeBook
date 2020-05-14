@@ -12,7 +12,7 @@ import "@fullcalendar/timegrid/main.css";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 import firebase from './firebase.js';
-import moment from "moment"
+
 class EventCalendar extends Component {
   constructor() {
     super();

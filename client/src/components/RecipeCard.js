@@ -104,16 +104,16 @@ const RecipeCard = ({ id, title, image, missingIngredients = null }) => {
       </div>
       <Popup open={open} closeOnDocumentClick onClose={() => setOpen(false)}>
         <div>
-        <div className="absolute z-20 w-16 h-16 flex justify-center items-center left-0 bottom-0">
+        <div className="absolute z-20 w-16 h-16 flex justify-center items-center left-0">
         <button
-            className=" w-20 h-10 bg-black-500 rounded-full leading-10 text-white hover:bg-gray-400 focus:outline-none"
+            className=" w-20 h-10 bg-black-500 rounded-full leading-10 text-white hover:bg-gray-400 focus:outline-none foodButton"
             // onClick={() => {setOpen(false); handleSubmit;}}
             onClick={handleSubmit}
           >
             Save
           </button>
           </div>
-          <div className="absolute z-20 w-16 h-16 flex justify-center items-center right-0 bottom-0">
+          <div className="absolute z-20 w-16 h-16 flex justify-center items-center right-0">
           <button
             className=" w-10 h-10 bg-black-500 rounded-full leading-10 text-white hover:bg-gray-400 focus:outline-none"
             onClick={() => setOpen(false)}

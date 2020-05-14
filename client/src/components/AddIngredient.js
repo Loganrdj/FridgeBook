@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
-import topIngredients from './../topIngredients.json';
+import topIngredients from '../topIngredients.json';
 import Autosuggest from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
